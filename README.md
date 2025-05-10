@@ -13,9 +13,8 @@ Este proyecto es una API REST construida con FastAPI para realizar recomendacion
 recommender-system/
 ├── api/               # Archivos principales de la API
 │   ├── main.py
-│   ├── recommender.py
+│   ├── recommender.py # Logica de negocio
 │   ├── utils.py
-├── services/          # Lógica de recomendación
 ├── chroma_db/         # Directorio donde se guarda la base de datos local de Chroma
 ├── data/              # Archivos fuente (CSV, TSV) utilizados por los scripts
 ├── scripts/           # Scripts para carga inicial y generación de datos
@@ -49,7 +48,9 @@ python -m venv venv
 Windows:
 
 - .\venv\Scripts\activate
-  Mac/Linux:
+
+Mac/Linux:
+
 - source .venv/bin/activate
 
 ### Instalación de dependencias
@@ -64,10 +65,10 @@ OPENAI_API_KEY=tu_clave_de_api
 
 Si deseas reiniciar la base de datos o empezar desde cero, ejecuta los siguientes scripts en este orden:
 
-python/scripts/01_load_data.py -> Carga y filtra 200 películas desde movies.tsv
-python/scripts/02_generate_synopsis.py -> Genera sinopsis usando la API de OpenAI
-python/scripts/03_generate_embeddings.py -> Crea embeddings, genera la tabla 'synopsis' e inyecta los datos en ChromaDB
-python/scripts/04_generate_users.py -> Crea 30 usuarios y les asigna de 20 a 50 películas con ratings aleatorios (1 a 5)
+- python/scripts/01_load_data.py -> Carga y filtra 200 películas desde movies.tsv
+- python/scripts/02_generate_synopsis.py -> Genera sinopsis usando la API de OpenAI
+- python/scripts/03_generate_embeddings.py -> Crea embeddings, genera la tabla 'synopsis' e inyecta los datos en ChromaDB
+- python/scripts/04_generate_users.py -> Crea 30 usuarios y les asigna de 20 a 50 películas con ratings aleatorios (1 a 5)
 
 ### Ejecutar el servidor
 
@@ -75,5 +76,9 @@ uvicorn api.main:app --reload
 
 ### Endpoints principales
 
+Ingresar los siguientes endpoints en alguna plataforma / app, para las consulas como postaman o thurner, Las consultas son de tipo GET.
+
 - **Recomendación User-User**: /user/{user_id}/user_recommendations/
 - **Recomendación Item-Item:**: /user/{user_id}/item_recommendations/
+
+### Respuesta

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def recommend_user_user(usuario_id: str, df_ratings: pd.DataFrame, user_similarity_df: pd.DataFrame, top_n: int):
+def recommend_user_user(usuario_id: str, df_ratings, user_similarity_df, top_n: int):
     """
     Recomienda películas a un usuario basado en el filtrado colaborativo user-user.
     Devuelve un diccionario con:
@@ -23,7 +23,7 @@ def recommend_user_user(usuario_id: str, df_ratings: pd.DataFrame, user_similari
         common = df_ratings.loc[[usuario_id, other_user]].dropna(axis=1, how='any')
         common_movies = common.shape[1]
         sim = user_similarity_df.at[usuario_id, other_user]
-        if common_movies >= 8 and sim > 0.3:
+        if common_movies >= 5 and sim > 0.2:
             filtered_similar_users.append((other_user, sim))
 
     # Ordenar y seleccionar mejores vecinos
@@ -59,9 +59,9 @@ def recommend_user_user(usuario_id: str, df_ratings: pd.DataFrame, user_similari
     for title, score in sorted_recs:
         neighbor = explanations.get(title)
         if neighbor:
-            reason = f"Based on similar user {neighbor} who rated this movie highly."
+            reason = f"Basado en el usuario similar {neighbor} que calificó esta película altamente"
         else:
-            reason = "No strong neighbor contribution found."
+            reason = "No se encontró una contribución fuerte de un vecino."
         recs_list.append({
             "title": title,
             "predicted_rating": score,

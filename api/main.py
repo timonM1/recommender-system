@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
 from api.recommender import recommend_user_user, recommend_item_item
 from api.utils import load_user_data, load_chroma_collection, load_embedding_model
 
@@ -13,7 +14,6 @@ try:
     print(f"Colección 'synopsis' cargada correctamente con {collection_synopsis.count()} elementos")
 except Exception as e:
     print(f"Error al cargar la colección 'synopsis': {str(e)}")
-    print("La API se iniciará sin la funcionalidad de recomendación item-item")
     collection_synopsis = None
 
 model = load_embedding_model()
@@ -22,8 +22,13 @@ model = load_embedding_model()
 def get_user_recommendations(user_id: int, top_n: int = 5):
     user_id = f"user_{user_id}"
     recs = recommend_user_user(user_id, df_ratings, similarity_df, top_n)
-    if not recs["neighbors"] and not recs["recommendations"]:
-        raise HTTPException(status_code=404, detail="User not found or no data")
+    if not recs.get("neighbors") and not recs.get("recommendations"):
+        return JSONResponse(
+            status_code=200,
+            content={
+                "message": f"No hay recomendaciones para el usuario {user_id}.",
+            }
+        )
     return recs
 
 @app.get("/user/{user_id}/item_recommendations/")
