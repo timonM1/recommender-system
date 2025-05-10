@@ -42,7 +42,6 @@ def load_chroma_collection(name: str):
     
     try:
         collection = client.get_collection(name)
-        print(f"Colección '{name}' cargada correctamente. Contiene {collection.count()} elementos.")
         return collection
     except Exception as e:
         print(f"Error al cargar la colección '{name}': {str(e)}")

@@ -76,9 +76,38 @@ uvicorn api.main:app --reload
 
 ### Endpoints principales
 
-Ingresar los siguientes endpoints en alguna plataforma / app, para las consulas como postaman o thurner, Las consultas son de tipo **GET**.
+Utiliza los siguientes endpoints en plataformas o aplicaciones para realizar consultas, como Postman o Thunder Client.
+Las solicitudes son de tipo **GET**:
 
 - **Recomendación User-User**: /user/{user_id}/user_recommendations/
 - **Recomendación Item-Item:**: /user/{user_id}/item_recommendations/
 
 ### Respuesta
+
+**Ejemplo de respuesta – User-User**
+{
+"neighbors": [ #Lista de usuarios similares al usuario consultado, identificados por tener patrones de calificación similares.
+
+"user_10",
+"user_4",
+"user_15",
+"user_2",
+"user_6"
+],
+"recommendations": [
+{
+"title": "8 Heads in a Duffel Bag (1997)", # Nombre de la película recomendada.
+"predicted_rating": 5.0, # Calificación estimada que el usuario probablemente daría a esta película.
+"reason": "Basado en el usuario similar user_4 que calificó esta película altamente" # Explicación basada en qué vecino (usuario similar) se recomendó esa película (por haberla calificado bien).
+}
+]
+}
+
+**Ejemplo de respuesta – Item-Item**
+[
+{
+"title": "Daytrippers, The (1996)", # Nombre de la película recomendada.
+"score": 0.7512, # Valor de similitud entre la película vista por el usuario y la recomendada. Cuanto más alto sea el valor, mayor es la similitud
+"origin": "Pompatus of Love, The (1996)" # Película base del usuario
+}
+]

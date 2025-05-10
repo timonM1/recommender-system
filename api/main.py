@@ -36,7 +36,7 @@ def get_user_recommendations(user_id: int, top_n: int = 20):
     return recs
 
 @app.get("/user/{user_id}/item_recommendations/")
-def get_item_item_recommendations(user_id: int, top_n: int = 10):
+def get_item_item_recommendations(user_id: int, top_n: int = 8):
     user_id = f"user_{user_id}"
     if user_id not in df_ratings.index:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")

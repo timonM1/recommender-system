@@ -135,7 +135,7 @@ def recommend_item_item(usuario_id: str, df_ratings, collection, model, top_n: i
     for title, (score, origin) in sorted_recs:
         recs.append({
             'title': title,
-            'score': round(score,3),
+            'score': round(score,4),
             'origin': origin
         })
     return recs
