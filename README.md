@@ -76,7 +76,7 @@ uvicorn api.main:app --reload
 
 ### Endpoints principales
 
-Ingresar los siguientes endpoints en alguna plataforma / app, para las consulas como postaman o thurner, Las consultas son de tipo GET.
+Ingresar los siguientes endpoints en alguna plataforma / app, para las consulas como postaman o thurner, Las consultas son de tipo **GET**.
 
 - **Recomendación User-User**: /user/{user_id}/user_recommendations/
 - **Recomendación Item-Item:**: /user/{user_id}/item_recommendations/

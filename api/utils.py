@@ -38,7 +38,6 @@ def load_chroma_collection(name: str):
     Lanza:
         Exception: Si ocurre un error al cargar la colección.
     """
-    print(f"Intentando cargar colección '{name}' desde {CHROMA_DB_PATH}")
     client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
     
     try:

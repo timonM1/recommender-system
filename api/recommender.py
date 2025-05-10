@@ -28,7 +28,7 @@ def recommend_user_user(usuario_id: str, df_ratings, user_similarity_df, top_n: 
 
     # Ordenar y seleccionar mejores vecinos
     filtered_similar_users.sort(key=lambda x: x[1], reverse=True)
-    top_neighbors = [user for user, _ in filtered_similar_users[:top_n]]
+    top_neighbors = [user for user, _ in filtered_similar_users[:5]]
 
     # Predecir rating para películas no vistas
     unseen = user_ratings[user_ratings.isna()].index.tolist()
