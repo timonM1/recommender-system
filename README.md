@@ -85,6 +85,7 @@ Las solicitudes son de tipo **GET**:
 ### Respuesta
 
 **Ejemplo de respuesta – User-User**
+ ``` json
 {
 "neighbors": [ #Lista de usuarios similares al usuario consultado, identificados por tener patrones de calificación similares.
 
@@ -102,8 +103,9 @@ Las solicitudes son de tipo **GET**:
 }
 ]
 }
-
+ ```
 **Ejemplo de respuesta – Item-Item**
+ ``` json
 [
 {
 "title": "Daytrippers, The (1996)", # Nombre de la película recomendada.
@@ -111,3 +113,4 @@ Las solicitudes son de tipo **GET**:
 "origin": "Pompatus of Love, The (1996)" # Película base del usuario
 }
 ]
+ ```
