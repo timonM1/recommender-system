@@ -87,30 +87,29 @@ Las solicitudes son de tipo **GET**:
 **Ejemplo de respuesta – User-User**
  ``` json
 {
-"neighbors": [ #Lista de usuarios similares al usuario consultado, identificados por tener patrones de calificación similares.
-
-"user_10",
-"user_4",
-"user_15",
-"user_2",
-"user_6"
-],
-"recommendations": [
-{
-"title": "8 Heads in a Duffel Bag (1997)", # Nombre de la película recomendada.
-"predicted_rating": 5.0, # Calificación estimada que el usuario probablemente daría a esta película.
-"reason": "Basado en el usuario similar user_4 que calificó esta película altamente" # Explicación basada en qué vecino (usuario similar) se recomendó esa película (por haberla calificado bien).
-}
-]
+   "neighbors": [ #Lista de usuarios similares al usuario consultado, identificados por tener patrones de calificación similares.
+      "user_10",
+      "user_4",
+      "user_15",
+      "user_2",
+      "user_6"
+   ],
+  "recommendations": [
+    {
+    "title": "8 Heads in a Duffel Bag (1997)", # Nombre de la película recomendada.
+    "predicted_rating": 5.0, # Calificación estimada que el usuario probablemente daría a esta película.
+    "reason": "Basado en el usuario similar user_4 que calificó esta película altamente" # Explicación basada en qué vecino (usuario similar) se recomendó esa película (por haberla calificado bien).
+    }
+  ]
 }
  ```
 **Ejemplo de respuesta – Item-Item**
  ``` json
 [
-{
-"title": "Daytrippers, The (1996)", # Nombre de la película recomendada.
-"score": 0.7512, # Valor de similitud entre la película vista por el usuario y la recomendada. Cuanto más alto sea el valor, mayor es la similitud
-"origin": "Pompatus of Love, The (1996)" # Película base del usuario
-}
+  {
+    "title": "Daytrippers, The (1996)", # Nombre de la película recomendada.
+    "score": 0.7512, # Valor de similitud entre la película vista por el usuario y la recomendada. Cuanto más alto sea el valor, mayor es la similitud
+    "origin": "Pompatus of Love, The (1996)" # Película base del usuario
+  }
 ]
  ```
